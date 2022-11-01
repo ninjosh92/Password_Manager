@@ -1,26 +1,16 @@
+import sys
+sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
 import PySimpleGUI as sg
 import validators
 import DB_interface
 import DB_object
+import TestWindow
 
+#sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
 my_DB_interface = DB_interface.DB_interface("Keys")
 sg.theme('DarkAmber')
 
 def main():
-	'''
-	text_layout_side = [
-		[
-			sg.Text("Image Folder"),
-		]
-	]
-	button_layout_side = [[sg.Text('Input a url (www.example.com)'), sg.Text(size=(15,1), key='-OUTPUT_URL-')],
-	          [sg.Input(key='-URL-')],
-	          [sg.Text('Input a username (big_example)'), sg.Text(size=(15,1), key='-OUTPUT_USERNAME-')],
-	          [sg.Input(key='-USERNAME-')],
-	          [sg.Text('Input a password (password12345)'), sg.Text(size=(15,1), key='-OUTPUT_URL-')],
-	          [sg.Input(key='-PASSWORD-')],
-	          [sg.Button('Show'), sg.Button('Exit')]]
-	'''
 
 	text_layout_side = [
 		[
@@ -28,24 +18,13 @@ def main():
 		]
 	]
 	button_layout_side = [[sg.Text('Input a url (www.example.com)'), sg.Text(size=(15,1), key='-OUTPUT_URL-')],	          
-	          [sg.Button('Get Password')],
-	          [sg.Button('Manage Passwords')],
-	          [sg.Button('Add Password')],
-	          [sg.Button('Exit')]
-	          ]
+	        	[sg.Button('Test Window')],
+				[sg.Button('Get Password')],
+	        	[sg.Button('Manage Passwords')],
+	        	[sg.Button('Add Password')],
+	        	[sg.Button('Exit')]
+	        	]
 
-
-	'''
-	layout = [[sg.VPush()],
-		[
-			sg.VPush(),
-			sg.Column(text_layout_side, key = 'Status'),
-			sg.VSeperator(),
-			sg.Column(button_layout_side),
-			sg.VPush()
-		]
-		[sg.VPush()]]
-	'''
 
 	
 
@@ -63,62 +42,51 @@ def main():
 	#status = main_window['Status']
 
 	while True:  # Event Loop
-	    main_window_event, main_window_values = main_window.read()
-	    print(main_window_event, main_window_values)
+		main_window_event, main_window_values = main_window.read()
+		print(main_window_event, main_window_values)
 	    
-	    if main_window_event == 'Add Password':
-	    	open_add_password_window()
-	    	print("Add Password Button works.")
+		if main_window_event == 'Test Window':
+			#open_add_password_window()
+			testWindow = TestWindow.TestWindow("my test window")
+			print("Add Password Button works.")
 
-	    if main_window_event == 'Get Password':
-	    	open_get_password_window()
-	    	print("Get Password Button works.")
+		if main_window_event == 'Add Password':
+			open_add_password_window()
+			print("Add Password Button works.")
 
-	    if main_window_event == 'Manage Passwords':
-	    	open_manage_passwords_window()
-	    	print("Manage Passwords Button works.")
+		if main_window_event == 'Get Password':
+			open_get_password_window()
+			print("Get Password Button works.")
 
-	    if main_window_event == sg.WIN_CLOSED or main_window_event == 'Exit':
-	        break
+		if main_window_event == 'Manage Passwords':
+			open_manage_passwords_window()
+			print("Manage Passwords Button works.")
 
-
-	    '''
-	    if event == 'Configure':
-	        if main_window.TKroot.state() == 'zoomed':
-	            status.update(value='Window zoomed and maximized !')
-	        else:
-	            status.update(value='Window normal')
-        '''
+		if main_window_event == sg.WIN_CLOSED or main_window_event == 'Exit':
+			break
 		
 
-	    if main_window_event == 'Show':
-	    	isUrlValid = check_url_input_valid(main_window_values)
-	    	if isUrlValid:
-	    		print('pass')
-	    		main_window['-OUTPUT_URL-'].update(main_window_values['-URL-'])
-	    		main_window['-OUTPUT_USERNAME-'].update(main_window_values['-USERNAME-'])
-	    		main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
-	    	else:
-	    		print('no pass')
-	    		main_window['-OUTPUT_URL-'].update('Bad url/domain')
-	    		main_window['-OUTPUT_USERNAME-'].update(main_window_values['-USERNAME-'])
-	    		main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
-	    	isInputAvailable = check_input_available(main_window_values)
+		if main_window_event == 'Show':
+			isUrlValid = check_url_input_valid(main_window_values)
+			if isUrlValid:
+				print('pass')
+				main_window['-OUTPUT_URL-'].update(main_window_values['-URL-'])
+				main_window['-OUTPUT_USERNAME-'].update(main_window_values['-USERNAME-'])
+				main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
+			else:
+				print('no pass')
+				main_window['-OUTPUT_URL-'].update('Bad url/domain')
+				main_window['-OUTPUT_USERNAME-'].update(main_window_values['-USERNAME-'])
+				main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
+			isInputAvailable = check_input_available(main_window_values)
 
-	    	if isInputAvailable:
-	    		#add the row
-	    		True
-	    	else:
-	    		main_window['-OUTPUT_URL-'].update('Unavailable with this url/username')
-	    		main_window['-OUTPUT_USERNAME-'].update('Unavailable with this url/username')
-	    		main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
-
-
-	    	#input_is_valid = check_input_valid(main_window_values)
-			#if True: # Update the "output" text element to be the value of "input" element
-			#	main_window['-OUTPUT_URL-'].update(main_window_values['-URL-'])
-			#	main_window['-OUTPUT_USERNAME-'].update(main_window_values['-USERNAME-'])
-			#	main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
+			if isInputAvailable:
+				#add the row
+				True
+			else:
+				main_window['-OUTPUT_URL-'].update('Unavailable with this url/username')
+				main_window['-OUTPUT_USERNAME-'].update('Unavailable with this url/username')
+				main_window['-PASSWORD-'].update(main_window_values['-PASSWORD-'])
 	main_window.close()
 
 
