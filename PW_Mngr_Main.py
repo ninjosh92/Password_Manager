@@ -1,10 +1,11 @@
 import sys
-sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
+#sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
 import PySimpleGUI as sg
 import validators
 import DB_interface
 import DB_object
-import TestWindow
+import AddPasswordWindow
+from TestWindow import TestWindow
 
 #sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
 my_DB_interface = DB_interface.DB_interface("Keys")
@@ -51,7 +52,8 @@ def main():
 			print("Add Password Button works.")
 
 		if main_window_event == 'Add Password':
-			open_add_password_window()
+			#open_add_password_window()
+			addPasswordWindow = AddPasswordWindow.AddPasswordWindow(my_DB_interface)
 			print("Add Password Button works.")
 
 		if main_window_event == 'Get Password':
