@@ -53,6 +53,7 @@ def main():
 
 		if main_window_event == 'Add Password':
 			#open_add_password_window()
+			print("Greg da best")
 			addPasswordWindow = AddPasswordWindow.AddPasswordWindow(my_DB_interface)
 			print("Add Password Button works.")
 
