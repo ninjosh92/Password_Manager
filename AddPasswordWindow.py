@@ -8,6 +8,7 @@ class AddPasswordWindow:
     #params: url, the username, and the password
     #return: true if successful, flase otherwise
     def __init__(self, my_DB_interface):
+        print("Inside add password class")
         self.my_DB_interface = my_DB_interface
         self.open_add_password_window(my_DB_interface)
 

@@ -4,7 +4,9 @@ import PySimpleGUI as sg
 import validators
 import DB_interface
 import DB_object
-import AddPasswordWindow
+from AddPasswordWindow import AddPasswordWindow
+from GetPasswordWindow import GetPasswordWindow
+from ManagePasswordsWindow import ManagePasswordsWindow
 from TestWindow import TestWindow
 
 #sys.path.insert(0, 'C:/Users/rafme/dev/Password_Manager/windows')
@@ -54,15 +56,17 @@ def main():
 		if main_window_event == 'Add Password':
 			#open_add_password_window()
 			print("Greg da best")
-			addPasswordWindow = AddPasswordWindow.AddPasswordWindow(my_DB_interface)
+			addPasswordWindow = AddPasswordWindow(my_DB_interface)
 			print("Add Password Button works.")
 
 		if main_window_event == 'Get Password':
-			open_get_password_window()
+			#open_get_password_window()
+			getPasswordWindow = GetPasswordWindow(my_DB_interface)
 			print("Get Password Button works.")
 
 		if main_window_event == 'Manage Passwords':
-			open_manage_passwords_window()
+			#open_manage_passwords_window()
+			managePasswordsWindow = ManagePasswordsWindow(my_DB_interface)
 			print("Manage Passwords Button works.")
 
 		if main_window_event == sg.WIN_CLOSED or main_window_event == 'Exit':
@@ -243,18 +247,18 @@ def open_present_password_window(passwordToRetrieveKey):
 			  [sg.Multiline(recordPassword), sg.Text(size=(15,1), key='-PASSWORD-')],
 	          [sg.Button('Exit')]]
 
-	open_present_password_window = sg.Window("Present Password", layout, modal=True)
+	present_password_window = sg.Window("Present Password", layout, modal=True)
 	choice = None
 
 	#my_DB_interface
 
 	while True:
-		event, newPasswordValues = open_present_password_window.read()
+		event, newPasswordValues = present_password_window.read()
 					
 		if event == "Exit" or event == sg.WIN_CLOSED:
 			break
 
-	open_present_password_window.close()
+	present_password_window.close()
 
 
 def open_manage_passwords_window():
