@@ -118,7 +118,7 @@ class GetPasswordWindow:
                     recordToEditKey = recordToRetreave[0:2]
                     print("Record key to be recordToEditKey: ", recordToEditKey)
                     #self.open_present_password_window(recordToEditKey)
-                    presentPasswordWindow = PresentPasswordWindow(recordToEditKey, my_DB_interface)
+                    PresentPasswordWindow(recordToEditKey, my_DB_interface)
             if event == "Delete":
                 print("Delete button selected")
                 if values['-RECORDS-']:

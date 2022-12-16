@@ -20,8 +20,7 @@ def main():
 			sg.Text("Image Folder"),
 		]
 	]
-	button_layout_side = [[sg.Text('Input a url (www.example.com)'), sg.Text(size=(15,1), key='-OUTPUT_URL-')],	          
-	        	[sg.Button('Test Window')],
+	button_layout_side = [[sg.Text('Input a url (www.example.com)'), sg.Text(size=(15,1), key='-OUTPUT_URL-')],
 				[sg.Button('Get Password')],
 	        	[sg.Button('Manage Passwords')],
 	        	[sg.Button('Add Password')],
@@ -47,26 +46,21 @@ def main():
 	while True:  # Event Loop
 		main_window_event, main_window_values = main_window.read()
 		print(main_window_event, main_window_values)
-	    
-		if main_window_event == 'Test Window':
-			#open_add_password_window()
-			testWindow = TestWindow.TestWindow("my test window")
-			print("Add Password Button works.")
 
 		if main_window_event == 'Add Password':
 			#open_add_password_window()
 			print("Kirby da best")
-			addPasswordWindow = AddPasswordWindow(my_DB_interface)
+			AddPasswordWindow(my_DB_interface)
 			print("Add Password Button works.")
 
 		if main_window_event == 'Get Password':
 			#open_get_password_window()
-			getPasswordWindow = GetPasswordWindow(my_DB_interface)
+			GetPasswordWindow(my_DB_interface)
 			print("Get Password Button works.")
 
 		if main_window_event == 'Manage Passwords':
 			#open_manage_passwords_window()
-			managePasswordsWindow = ManagePasswordsWindow(my_DB_interface)
+			ManagePasswordsWindow(my_DB_interface)
 			print("Manage Passwords Button works.")
 
 		if main_window_event == sg.WIN_CLOSED or main_window_event == 'Exit':
