@@ -15,6 +15,10 @@ sg.theme('DarkAmber')
 
 def main():
 
+	background_layout = [
+		[sg.Image(r'main_background.png')]
+		]
+	window_background = sg.Window('Background', background_layout, no_titlebar=True, finalize=True, margins=(0, 0), element_padding=(0,0))
 	text_layout_side = [
 		[
 			sg.Text("Image Folder"),
@@ -40,7 +44,7 @@ def main():
           ]
 
 
-	main_window = sg.Window('Pattern 2B', main_layout, resizable =True, element_justification='c', size = (500, 500))
+	main_window = sg.Window('Pattern 2B', main_layout, resizable =True, element_justification='c', size = (500, 500), transparent_color=sg.theme_background_color())
 	#main_window.bind('<Configure>', "Configure")
 	#status = main_window['Status']
 
