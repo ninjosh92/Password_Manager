@@ -24,7 +24,6 @@ def main():
 				[sg.Button('Get Password')],
 	        	[sg.Button('Manage Passwords')],
 	        	[sg.Button('Add Password')],
-				[sg.Button('Call Colin')],
 	        	[sg.Button('Exit')]
 	        	]
 
