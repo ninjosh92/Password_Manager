@@ -18,7 +18,7 @@ def main():
 	background_layout = [
 		[sg.Image(r'main_background.png')]
 		]
-	window_background = sg.Window('Background', background_layout, no_titlebar=True, finalize=True, margins=(0, 0), element_padding=(0,0))
+	window_background = sg.Window('Background', background_layout, no_titlebar=True, size = (500, 500), finalize=True, margins=(0, 0), element_padding=(0,0))
 	text_layout_side = [
 		[
 			sg.Text("Image Folder"),
@@ -62,7 +62,7 @@ def main():
 			#open_get_password_window()
 			GetPasswordWindow(my_DB_interface)
 			print("Get Password Button works.")
-
+	
 		if main_window_event == 'Manage Passwords':
 			#open_manage_passwords_window()
 			ManagePasswordsWindow(my_DB_interface)
